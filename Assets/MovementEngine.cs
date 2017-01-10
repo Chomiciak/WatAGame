@@ -5,6 +5,9 @@ using UnityEngine;
 public class MovementEngine : MonoBehaviour {
 
 
+	public Canvas can = new Canvas();
+
+
 	
 	// Update is called once per frame
 	void Update () {
@@ -19,7 +22,23 @@ public class MovementEngine : MonoBehaviour {
 			body.velocity = new Vector2 (body.velocity.x, -5);
 		if(Input.GetKeyDown(KeyCode.D))
 			body.velocity = new Vector2 (5, body.velocity.y);
-		
 
 	}
+
+
+	void OnTriggerEnter2D(Collider2D c){
+		if(c.name.Equals("Floor")){
+			Destroy (this.gameObject);
+			can.GetComponent<Canvas> ().enabled = true;
+		}
+
+		if(c.name.Equals("Cheeseburger")){
+			Destroy (c.gameObject);
+
+		}
+
+	}	
+
+
 }
+
