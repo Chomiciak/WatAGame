@@ -47,6 +47,9 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\MovementEngine.cs" />
+     <None Include="Assets\Plugins\LibGit2Sharp\Editor\Moq.xml" />
+     <None Include="Assets\Plugins\LibGit2Sharp\Editor\LibGit2Sharp.xml" />
+     <None Include="Assets\Editor Default Resources\UniGit\gitignore.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

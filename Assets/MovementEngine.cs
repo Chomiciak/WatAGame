@@ -1,11 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MovementEngine : MonoBehaviour {
 
 
 	public Canvas can = new Canvas();
+
+	public Canvas PanelZPunktami = new Canvas();
+
+
+	public GameObject hamburger = null;
+
+	void Start(){
+		if(!PlayerPrefs.HasKey("punkty"))
+			PlayerPrefs.SetInt ("punkty", 0);
+	}
 
 
 	
@@ -32,8 +43,24 @@ public class MovementEngine : MonoBehaviour {
 			can.GetComponent<Canvas> ().enabled = true;
 		}
 
-		if(c.name.Equals("Cheeseburger")){
+		if(c.name.Contains("Cheeseburger")){
 			Destroy (c.gameObject);
+
+			PlayerPrefs.SetInt (
+				"punkty", 
+				PlayerPrefs.GetInt ("punkty") + 1
+			);
+
+			PanelZPunktami.GetComponentInChildren<Text> ().text 
+			= "Masz tyle punktów: " + PlayerPrefs.GetInt("punkty");
+		
+			GameObject go = Instantiate (hamburger);
+		
+			go.transform.position = 
+				new Vector2( 
+					Random.Range (-5, 5), 
+					Random.Range (-5, 5)
+				);
 
 		}
 
