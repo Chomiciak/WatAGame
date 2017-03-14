@@ -60,10 +60,8 @@ public class MovementEngine : MonoBehaviour {
 
 
 	void OnTriggerEnter2D(Collider2D c){
-		if(c.name.Equals("Floor")){
-			Destroy (this.gameObject);
-			can.GetComponent<Canvas> ().enabled = true;
-		}
+		if (c.name.Equals ("Floor"))
+			koniecGry ();
 
 		if(c.name.Contains("Cheeseburger")){
 			Destroy (c.gameObject);
@@ -106,9 +104,21 @@ public class MovementEngine : MonoBehaviour {
 
 			zycie_tekst.text = "Twoje życie: "+PlayerPrefs.GetInt("zycie");
 
+			if (PlayerPrefs.GetInt ("zycie") == 0)
+				koniecGry ();
+
 		}
 	}	
 
+
+
+	public void koniecGry(){
+		Destroy (this.gameObject);
+		can.GetComponent<Canvas> ().enabled = true;
+
+		PlayerPrefs.SetInt ("zycie", 10);
+		PlayerPrefs.SetInt ("punkty", 0);
+	}
 
 }
 
