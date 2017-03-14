@@ -15,6 +15,8 @@ public class MovementEngine : MonoBehaviour {
 
 	public GameObject hamburger = null;
 
+	public GameObject pocisk = null;
+
 	void Start(){
 		if(!PlayerPrefs.HasKey("punkty"))
 			PlayerPrefs.SetInt ("punkty", 0);
@@ -31,6 +33,20 @@ public class MovementEngine : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+		if (Input.GetMouseButtonDown (0)) {
+			GameObject p = Instantiate (pocisk);
+
+			p.transform.position = this.transform.position;
+
+
+			float pos_x = Input.mousePosition.x - this.transform.position.x;
+			float pos_y = Input.mousePosition.y - this.transform.position.y;
+
+			p.GetComponent<Rigidbody2D> ().(new Vector2 (pos_x*speed, pos_y*speed));
+
+		}
+
 
 		if (timer > 1) {
 			timer -= 1;
